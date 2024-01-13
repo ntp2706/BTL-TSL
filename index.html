@@ -1,0 +1,16 @@
+<script>
+    if (navigator.userAgentData) {
+    // Sử dụng navigator.userAgentData để lấy thông tin về thiết bị
+    const deviceInfo = navigator.userAgentData;
+
+    // Kiểm tra và hiển thị thông tin loại thiết bị
+    if (deviceInfo.mobile) {
+        document.location.href = 'mobile.html';
+    } else if (deviceInfo.desktop) {
+        document.location.href = 'desktop.html';
+    } else {
+        document.location.href = 'desktop.html';
+    }
+}
+
+</script>

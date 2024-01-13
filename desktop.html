@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+	
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Demo TSL</title>
+<link rel='stylesheet' href='https://dearflip.com/wp-content/plugins/dflip/assets/css/dflip.min.css?ver=2.1.189'/>
+<script src="https://dearflip.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1"></script>
+</head>
+<style id="custom-styles">
+</style>
+<style >
+	body{
+		transition: background-color 0.5s;
+		background-color: rgb(255, 255, 255);
+	}
+	.contain {
+		display: flex;
+		flex-direction: column; 
+		align-items: center; 
+		justify-content: center; 
+		height: 97vh; 
+		margin: 0; 
+	}
+	.wp-block-button {
+		height: 550px;
+		width: 1000px;
+		background-color: rgb(239, 239, 239);
+		cursor: pointer;
+		border: 3px dashed black;
+		border-radius: 20px;
+		display: flex;
+		opacity: 0.2;
+		flex-direction: column; 
+		align-items: center; 
+		justify-content: center; 
+	}
+	.text{
+		font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+		text-align: center;
+		font-size: 30px;
+		margin-top: -275px;
+		opacity: 0.5;
+		color: #333;
+	}
+	section.linkAnnotation a,
+	a.linkAnnotation,
+	.buttonWidgetAnnotation a,
+	a.customLinkAnnotation,
+	.customHtmlAnnotation,
+	.customVideoAnnotation, a.df-autolink{
+		background-color: transparent;
+	}
+	section.linkAnnotation a:hover,
+	a.linkAnnotation:hover,
+	.buttonWidgetAnnotation a:hover,
+	a.customLinkAnnotation:hover,
+	.customHtmlAnnotation:hover,
+	.customVideoAnnotation:hover, a.df-autolink:hover {
+	background-color: transparent;
+	}
+	.dark-mode{
+		transition: background-color 0.5s;
+		background-color:#333;
+		color: white;
+	}
+    .switch {
+        margin-top: -450px;
+        margin-left: 30px;
+        position: fixed;
+        display: inline-block;
+        width: 70px;
+        height: 34px;
+    }
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+    .slider {
+        border-radius: 20px;
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: .4s;
+    }
+    .slider:before {
+        border-radius: 50%;
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: .4s;
+    }
+    input:checked + .slider {
+        background-color: #2196F3;
+    }
+    input:checked + .slider:before {
+        transform: translateX(36px);
+    }
+	
+</style>
+<body>
+<div class="contain">
+	<div class="wp-block-button has-custom-font-size df-open-local-file has-medium-font-size">
+		<img class='plus' src="plus.png" width="100px" height="100px">
+	</div>
+</div>
+<p class="text">Upload your book</p>
+<label class="switch">
+    <input type="checkbox" id="darkModeToggle">
+    <span class="slider"></span>
+    <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Darkmode</p>
+  </label>
+
+  <script>
+
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const body = document.body;
+	const block_button = document.querySelector('.wp-block-button');
+	const text = document.querySelector('.text');
+	const plus = document.querySelector('.plus');
+	const custom_styles = document.getElementById('custom-styles');
+
+    darkModeToggle.addEventListener('change', () => {
+		if (darkModeToggle.checked) {
+			custom_styles.innerHTML = `
+				.df-ui{
+					background-color: rgb(0, 0, 0);
+				}
+				.df-ui-btn{
+					background-color: rgb(0, 0, 0);
+				}
+				.df-page-content{
+					background-color: rgb(255, 255, 0);
+					opacity: 0.1;
+				}
+				.df-container{
+					background-color: rgb(51, 51, 51);
+				}
+				.df-post-shelf{
+					background-color: rgb(0, 0, 0);
+				}
+			`;
+			body.classList.toggle('dark-mode');
+			block_button.style.backgroundColor = '#000';
+			block_button.style.border = '3px dashed #fff';
+			text.style.color = '#fff';
+			plus.style.filter = 'invert(100%)';
+		}
+		else {
+			custom_styles.innerHTML = `
+				.df-ui{
+					background-color: rgb(255, 255, 255);
+				}
+				.df-ui-btn{
+					background-color: rgb(255, 255, 255);
+				}
+				.df-page-content{
+					background-color: transparent;
+					opacity: 0.5;
+				}
+				.df-container{
+					background-color: rgb(255, 255, 255);
+				}
+				.df-post-shelf{
+					background-color: rgb(255, 255, 255);
+				}
+			`;
+			body.classList.remove('dark-mode');
+			block_button.style.backgroundColor = '#efefef';
+			block_button.style.border = '3px dashed #000';
+			text.style.color = '#000';
+			plus.style.filter = 'invert(0%)';
+		}
+    });
+  </script>
+<script src="https://dearflip.com/wp-content/plugins/dflip/assets/js/dflip.min.js?ver=2.1.189"></script>
+</body>
+</html>
+
+
